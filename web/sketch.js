@@ -1,4 +1,4 @@
-let font; // Variable for the custom font
+let font;
 let secondFont; 
 let textColor; // Current text color
 let colorToggle = false; // To toggle between two colors
@@ -62,14 +62,14 @@ function setup() {
 }
 
 function draw() {
-  background(0, 150, 255); // Light blue background to match the image
+  background(0, 150, 255);
   
   fill(255);
   noStroke();
   ellipse(windowWidth / 2, windowHeight / 2 + 100, 600, 600);
 
   image(bgImage, 0, 400, windowWidth, windowHeight);
-  if (star) { // Check if the star image loaded successfully
+  if (star) {
     image(star, windowWidth - 400, -200, 550, 550);
   }
 
@@ -82,47 +82,47 @@ function draw() {
   let offsetY = centerY - gameboyHeight / 2;
 
   // Game Boy Body
-  fill(255, 165, 0); // Orange for the body
-  stroke(150, 75, 0); // Darker orange stroke for the outline
+  fill(255, 165, 0); 
+  stroke(150, 75, 0);
   strokeWeight(5);
-  rect(offsetX, offsetY, gameboyWidth, gameboyHeight, 20); // Main Game Boy body
+  rect(offsetX, offsetY, gameboyWidth, gameboyHeight, 20);
 
   // Screen
-  fill(0); // Light off-white color for the screen placeholder
+  fill(0);
   screenX = offsetX + 35;
   screenY = offsetY + 40;
-  rect(screenX, screenY, screenWidth, screenHeight); // Centered screen in the body
+  rect(screenX, screenY, screenWidth, screenHeight); 
 
   // Screen Border
   noFill();
-  stroke(200, 100, 50); // Dark orange-brown for the screen border
+  stroke(200, 100, 50);
   strokeWeight(8);
-  rect(screenX, screenY, screenWidth, screenHeight); // Border around the screen
+  rect(screenX, screenY, screenWidth, screenHeight); 
 
   // D-Pad
-  fill(200, 100, 50); // Orange for D-pad buttons
+  fill(200, 100, 50); 
   noStroke();
-  rect(offsetX + 60, offsetY + 380, 40, 90, 5); // Vertical bar of D-pad
-  rect(offsetX + 40, offsetY + 400, 85, 40, 5); // Horizontal bar of D-pad
+  rect(offsetX + 60, offsetY + 380, 40, 90, 5); 
+  rect(offsetX + 40, offsetY + 400, 85, 40, 5); 
 
   // A and B Buttons
   ellipse(offsetX + 300, offsetY + 400, 50); // A Button
   ellipse(offsetX + 250, offsetY + 450, 50); // B Button
 
   // Start and Select Buttons
-  fill(255, 255, 255); // White for Start and Select buttons
+  fill(255, 255, 255);
   rect(offsetX + 90, offsetY + 520, 70, 15, 10); // Start button
   rect(offsetX + 200, offsetY + 520, 70, 15, 10); // Select button
 
   // Speaker
-  fill(0); // Black for speaker bars
+  fill(0);
   for (let i = 0; i < 8; i++) {
-    rect(offsetX + 120 + i * 25, offsetY + 580, 15, 35); // Speaker grill lines
+    rect(offsetX + 120 + i * 25, offsetY + 580, 15, 35);
   }
 
   // Game inside the Game Boy screen
   push();
-  translate(screenX, screenY); // Move everything to the screen coordinates
+  translate(screenX, screenY);
 
   if (gameStarted) {
     // Ball bounces off walls inside the screen
@@ -174,14 +174,14 @@ function draw() {
   textAlign(CENTER, CENTER);
   text("Game\nOn!", offsetX + 760, offsetY + 90);
 
-  // Animate the text color
-  if (frameCount % 60 === 0) { // Change color every 60 frames (1 second)
+  // Animate text color
+  if (frameCount % 60 === 0) { // Change color every 60 frames (1 sec)
     if (colorToggle) {
       textColor = color1;
     } else {
       textColor = color2;
     }
-    colorToggle = !colorToggle; // Toggle the color
+    colorToggle = !colorToggle;
   }
 
   // Draw animated text to the left of the Game Boy
@@ -189,7 +189,7 @@ function draw() {
   textFont(font);
   textSize(100);
   textAlign(CENTER, CENTER);
-  text("PONG!", offsetX - 280, offsetY + 80); // Position the text to the left of the Game Boy
+  text("PONG!", offsetX - 280, offsetY + 80);
 
   // Instruction box
   fill(224, 93, 19, 220);
@@ -198,9 +198,9 @@ function draw() {
   rect(offsetX - 450, offsetY + 200, 380, 400, 20);
 
   noStroke();
-  fill(255); // White color for the text
+  fill(255);
   textAlign(CENTER, CENTER);
-  textFont(secondFont); // Use the second font
+  textFont(secondFont);
   textSize(20);
   text("Welcome to the \nPong Quest!", offsetX - 450 + 200, offsetY + 200 + 50);
   textSize(15);
@@ -208,8 +208,8 @@ function draw() {
   textSize(20);
   text("How To Play", offsetX - 450 + 190, offsetY + 200 + 250);
   textSize(15);
-  text("Use ARROW keys to move", offsetX - 450 + 190, offsetY + 200 + 300); // Centered text in the instruction box
-  text("Press 'R' to restart", offsetX - 450 + 190, offsetY + 200 + 320); // Centered text in the instruction box
+  text("Use ARROW keys to move", offsetX - 450 + 190, offsetY + 200 + 300); 
+  text("Press 'R' to restart", offsetX - 450 + 190, offsetY + 200 + 320);
   
 
 }
@@ -237,10 +237,10 @@ function resetGame() {
 function keyPressed() {
   if (keyCode === LEFT_ARROW) {
     paddlePosX -= 50;
-    if (paddlePosX < 0) paddlePosX = 0; // Keep paddle inside screen
+    if (paddlePosX < 0) paddlePosX = 0;
   } else if (keyCode === RIGHT_ARROW) {
     paddlePosX += 50;
-    if (paddlePosX + paddleWidth > screenWidth) paddlePosX = screenWidth - paddleWidth; // Keep paddle inside screen
+    if (paddlePosX + paddleWidth > screenWidth) paddlePosX = screenWidth - paddleWidth; 
   }
 
   // Start the game when the spacebar is pressed
@@ -254,6 +254,6 @@ function keyPressed() {
   }
   // Restart the game when 'R' is pressed
   if (key === 'r' || key === 'R') {
-    resetGame(); // Call resetGame function to restart
+    resetGame();
   }
 }
